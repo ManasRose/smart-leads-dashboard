@@ -1,29 +1,29 @@
-import { Request } from 'express';
-import { Types } from 'mongoose';
+import { Request } from "express";
+import { Types } from "mongoose";
 
 // ─── Enums ───────────────────────────────────────────────────────────────────
 
 export enum UserRole {
-  ADMIN = 'admin',
-  SALES = 'sales',
+  ADMIN = "admin",
+  SALES = "sales",
 }
 
 export enum LeadStatus {
-  NEW = 'New',
-  CONTACTED = 'Contacted',
-  QUALIFIED = 'Qualified',
-  LOST = 'Lost',
+  NEW = "New",
+  CONTACTED = "Contacted",
+  QUALIFIED = "Qualified",
+  LOST = "Lost",
 }
 
 export enum LeadSource {
-  WEBSITE = 'Website',
-  INSTAGRAM = 'Instagram',
-  REFERRAL = 'Referral',
+  WEBSITE = "Website",
+  INSTAGRAM = "Instagram",
+  REFERRAL = "Referral",
 }
 
 export enum SortOrder {
-  LATEST = 'latest',
-  OLDEST = 'oldest',
+  LATEST = "latest",
+  OLDEST = "oldest",
 }
 
 // ─── User ─────────────────────────────────────────────────────────────────────
@@ -66,6 +66,10 @@ export interface JwtPayload {
 
 export interface AuthRequest extends Request {
   user?: JwtPayload;
+  query: any;
+  params: any;
+  body: any;
+  headers: any;
 }
 
 // ─── Query Params ─────────────────────────────────────────────────────────────
