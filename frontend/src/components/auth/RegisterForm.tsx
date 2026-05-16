@@ -1,10 +1,10 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import { Mail, Lock, User, Shield } from 'lucide-react';
-import { RegisterCredentials, UserRole } from '../../types';
-import Input from '../ui/Input';
-import Select from '../ui/Select';
-import Button from '../ui/Button';
+import React from "react";
+import { useForm } from "react-hook-form";
+import { Mail, Lock, User } from "lucide-react";
+import { RegisterCredentials, UserRole } from "../../types";
+import Input from "../ui/Input";
+import Select from "../ui/Select";
+import Button from "../ui/Button";
 
 interface RegisterFormProps {
   onSubmit: (data: RegisterCredentials) => Promise<void>;
@@ -13,11 +13,15 @@ interface RegisterFormProps {
 }
 
 const roleOptions = [
-  { value: UserRole.SALES, label: 'Sales User' },
-  { value: UserRole.ADMIN, label: 'Admin' },
+  { value: UserRole.SALES, label: "Sales User" },
+  { value: UserRole.ADMIN, label: "Admin" },
 ];
 
-const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit, loading, onSwitchToLogin }) => {
+const RegisterForm: React.FC<RegisterFormProps> = ({
+  onSubmit,
+  loading,
+  onSwitchToLogin,
+}) => {
   const {
     register,
     handleSubmit,
@@ -32,9 +36,12 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit, loading, onSwitch
         autoComplete="name"
         icon={<User size={16} />}
         error={errors.name?.message}
-        {...register('name', {
-          required: 'Name is required',
-          minLength: { value: 2, message: 'Name must be at least 2 characters' },
+        {...register("name", {
+          required: "Name is required",
+          minLength: {
+            value: 2,
+            message: "Name must be at least 2 characters",
+          },
         })}
       />
       <Input
@@ -44,9 +51,12 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit, loading, onSwitch
         autoComplete="email"
         icon={<Mail size={16} />}
         error={errors.email?.message}
-        {...register('email', {
-          required: 'Email is required',
-          pattern: { value: /^\S+@\S+\.\S+$/, message: 'Invalid email address' },
+        {...register("email", {
+          required: "Email is required",
+          pattern: {
+            value: /^\S+@\S+\.\S+$/,
+            message: "Invalid email address",
+          },
         })}
       />
       <Input
@@ -56,21 +66,20 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit, loading, onSwitch
         autoComplete="new-password"
         icon={<Lock size={16} />}
         error={errors.password?.message}
-        {...register('password', {
-          required: 'Password is required',
-          minLength: { value: 6, message: 'Password must be at least 6 characters' },
+        {...register("password", {
+          required: "Password is required",
+          minLength: {
+            value: 6,
+            message: "Password must be at least 6 characters",
+          },
         })}
       />
-      <Select
-        label="Role"
-        options={roleOptions}
-        {...register('role')}
-      />
+      <Select label="Role" options={roleOptions} {...register("role")} />
       <Button type="submit" loading={loading} size="lg" className="w-full mt-1">
         Create Account
       </Button>
       <p className="text-center text-sm text-gray-500 dark:text-gray-400">
-        Already have an account?{' '}
+        Already have an account?{" "}
         <button
           type="button"
           onClick={onSwitchToLogin}
