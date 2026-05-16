@@ -4,17 +4,28 @@ A full-stack Lead Management Dashboard built with the MERN stack, TypeScript, an
 
 ---
 
+## 🌐 Live Demo
+
+| Service         | URL                                                 |
+| --------------- | --------------------------------------------------- |
+| **Frontend**    | https://smart-leads-dashboard-1-l006.onrender.com   |
+| **Backend API** | https://smart-leads-dashboard-uryz.onrender.com/api |
+
+> ⚠️ Hosted on Render's free tier — the backend may take 20-30 seconds to wake up on first request after inactivity.
+
+---
+
 ## 📦 Tech Stack
 
-| Layer     | Technology                                      |
-|-----------|-------------------------------------------------|
-| Frontend  | React 18, TypeScript, Tailwind CSS, Vite        |
-| Backend   | Node.js, Express.js, TypeScript                 |
-| Database  | MongoDB + Mongoose                              |
-| Auth      | JWT + bcryptjs                                  |
-| State     | TanStack React Query                            |
-| Forms     | React Hook Form                                 |
-| Container | Docker + Docker Compose                         |
+| Layer     | Technology                               |
+| --------- | ---------------------------------------- |
+| Frontend  | React 18, TypeScript, Tailwind CSS, Vite |
+| Backend   | Node.js, Express.js, TypeScript          |
+| Database  | MongoDB Atlas + Mongoose                 |
+| Auth      | JWT + bcryptjs                           |
+| State     | TanStack React Query                     |
+| Forms     | React Hook Form                          |
+| Container | Docker + Docker Compose                  |
 
 ---
 
@@ -86,7 +97,7 @@ smart-leads-dashboard/
 ### Prerequisites
 
 - Node.js 18+
-- MongoDB 6+ (local or Atlas)
+- MongoDB 6+ (local) or MongoDB Atlas (cloud)
 - Docker & Docker Compose (optional)
 
 ---
@@ -96,7 +107,7 @@ smart-leads-dashboard/
 #### 1. Clone the repository
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/ManasRose/smart-leads-dashboard
 cd smart-leads-dashboard
 ```
 
@@ -150,43 +161,43 @@ docker compose -f docker-compose.dev.yml up --build
 
 ### Backend `.env`
 
-| Variable         | Description                        | Example                             |
-|------------------|------------------------------------|-------------------------------------|
-| `PORT`           | Server port                        | `5000`                              |
-| `NODE_ENV`       | Environment                        | `development`                       |
-| `MONGODB_URI`    | MongoDB connection string          | `mongodb://localhost:27017/leads`   |
-| `JWT_SECRET`     | JWT signing secret (keep private!) | `your_secret_key`                   |
-| `JWT_EXPIRES_IN` | Token expiry                       | `7d`                                |
-| `ALLOWED_ORIGINS`| CORS allowed origins (comma-sep)   | `http://localhost:3000`             |
+| Variable          | Description                        | Example                           |
+| ----------------- | ---------------------------------- | --------------------------------- |
+| `PORT`            | Server port                        | `5000`                            |
+| `NODE_ENV`        | Environment                        | `development`                     |
+| `MONGODB_URI`     | MongoDB connection string          | `mongodb://localhost:27017/leads` |
+| `JWT_SECRET`      | JWT signing secret (keep private!) | `your_secret_key`                 |
+| `JWT_EXPIRES_IN`  | Token expiry                       | `7d`                              |
+| `ALLOWED_ORIGINS` | CORS allowed origins (comma-sep)   | `http://localhost:3000`           |
 
 ### Frontend `.env`
 
-| Variable            | Description     | Example                        |
-|---------------------|-----------------|--------------------------------|
-| `VITE_API_BASE_URL` | Backend API URL | `http://localhost:5000/api`    |
+| Variable            | Description     | Example                     |
+| ------------------- | --------------- | --------------------------- |
+| `VITE_API_BASE_URL` | Backend API URL | `http://localhost:5000/api` |
 
 ---
 
 ## 👤 User Roles
 
-| Role  | Capabilities                                          |
-|-------|-------------------------------------------------------|
-| Admin | Full CRUD on all leads, export all leads as CSV       |
-| Sales | CRUD only on own leads, export own leads as CSV       |
+| Role  | Capabilities                                    |
+| ----- | ----------------------------------------------- |
+| Admin | Full CRUD on all leads, export all leads as CSV |
+| Sales | CRUD only on own leads, export own leads as CSV |
 
 ---
 
 ## 📊 Lead Fields
 
-| Field      | Type   | Values                                       |
-|------------|--------|----------------------------------------------|
-| name       | string | Min 2, Max 100 chars                        |
-| email      | string | Valid email format                           |
-| status     | enum   | New, Contacted, Qualified, Lost              |
-| source     | enum   | Website, Instagram, Referral                 |
-| notes      | string | Optional, max 500 chars                      |
-| createdBy  | ref    | Reference to User                            |
-| createdAt  | date   | Auto-generated                               |
+| Field     | Type   | Values                          |
+| --------- | ------ | ------------------------------- |
+| name      | string | Min 2, Max 100 chars            |
+| email     | string | Valid email format              |
+| status    | enum   | New, Contacted, Qualified, Lost |
+| source    | enum   | Website, Instagram, Referral    |
+| notes     | string | Optional, max 500 chars         |
+| createdBy | ref    | Reference to User               |
+| createdAt | date   | Auto-generated                  |
 
 ---
 
@@ -194,19 +205,19 @@ docker compose -f docker-compose.dev.yml up --build
 
 See [API_DOCS.md](./API_DOCS.md) for full documentation.
 
-Base URL: `http://localhost:5000/api`
+Base URL: `https://smart-leads-dashboard-uryz.onrender.com/api`
 
-| Method | Endpoint            | Auth | Description                |
-|--------|---------------------|------|----------------------------|
-| POST   | /auth/register      | No   | Register new user          |
-| POST   | /auth/login         | No   | Login & get JWT token      |
-| GET    | /auth/me            | Yes  | Get current user info      |
-| GET    | /leads              | Yes  | Get leads (filter/sort/page)|
-| POST   | /leads              | Yes  | Create new lead            |
-| GET    | /leads/:id          | Yes  | Get single lead            |
-| PUT    | /leads/:id          | Yes  | Update lead                |
-| DELETE | /leads/:id          | Yes  | Delete lead                |
-| GET    | /leads/export       | Yes  | Export leads as CSV        |
+| Method | Endpoint       | Auth | Description                  |
+| ------ | -------------- | ---- | ---------------------------- |
+| POST   | /auth/register | No   | Register new user            |
+| POST   | /auth/login    | No   | Login & get JWT token        |
+| GET    | /auth/me       | Yes  | Get current user info        |
+| GET    | /leads         | Yes  | Get leads (filter/sort/page) |
+| POST   | /leads         | Yes  | Create new lead              |
+| GET    | /leads/:id     | Yes  | Get single lead              |
+| PUT    | /leads/:id     | Yes  | Update lead                  |
+| DELETE | /leads/:id     | Yes  | Delete lead                  |
+| GET    | /leads/export  | Yes  | Export leads as CSV          |
 
 ---
 
@@ -238,4 +249,4 @@ cd frontend && npm run lint
 ## 📬 Submission
 
 Send to: **ritik.yadav@servicehive.tech**  
-Subject: `MERN Internship Assignment Submission - Your Name`
+Subject: `MERN Internship Assignment Submission - Manas Rose`
